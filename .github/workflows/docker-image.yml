@@ -21,3 +21,4 @@ jobs:
           docker-image-name: my-svc
           docker-image-tag: latest
           dockerfile-path: ./Dockerfile
+          build-context: ./src/svc
