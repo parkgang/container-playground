@@ -1,11 +1,10 @@
-# name: rlaworhkd430/sql-executor
-# working_dir: /tmp
-FROM mysql:5.7
+FROM node
 
 WORKDIR /tmp
 
-ENV MYSQL_HOST null
+# 환경 변수 값이 정상적으로 전달되는지 확인하기 위한 변수입니다.
+ENV ENV_TEST ENV_UNDEFINED
 
-COPY ./init.sql ./init.sql
+COPY ./ ./
 
-CMD ["bash", "-c", "mysql -h $MYSQL_HOST --port=3306 < ./init.sql"]
+CMD [ "node", "app.js"]

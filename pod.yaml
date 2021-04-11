@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test
+  name: node-test
 spec:
   containers:
-    - name: mysql
-      image: ruddms936/test
+    - name: node
+      image: ghcr.io/ruddms936/helloworld-github-action/image:latest
       env:
-        - name: MYSQL_HOST
-          value: 'mysql-0.mysql.prod'
+        - name: ENV_TEST
+          value: 'k8s_run'
