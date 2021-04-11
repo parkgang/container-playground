@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: node
-      image: ghcr.io/ruddms936/helloworld-github-action/image:latest
+      image: ghcr.io/ruddms936/container-playground/image:latest
       env:
         - name: ENV_TEST
           value: 'k8s_run'
