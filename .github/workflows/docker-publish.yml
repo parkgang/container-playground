@@ -54,3 +54,12 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+      - name: aks login
+        uses: azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+          resourceGroupName: 'myResourceGroup'
+          clusterName: 'myAKSCluster'
+        id: login
+    
+  
