@@ -1,4 +1,4 @@
-name: aks
+name: aks login
 
 on:
   push:
