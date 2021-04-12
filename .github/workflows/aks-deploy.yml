@@ -16,16 +16,18 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
+      - name: repo checkout
+        uses: actions/checkout@v2
+
       - name: github action debug
         run: |
           echo github.event_name="${{ github.event_name }}"
           echo github.repository="${{ github.repository }}"
           echo github.ref="${{ github.ref }}"
           echo github.sha="${{ github.sha }}"
-
-      - name: repo checkout
-        uses: actions/checkout@v2
-
+          pwd
+          ls -alF
+          
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
