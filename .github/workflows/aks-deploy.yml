@@ -1,37 +1,30 @@
-name: Docker
+name: aks deploy
 
 on:
   push:
-    # Publish `main` as Docker `latest` image.
     branches:
       - main
-
-    # Publish `v1.2.3` tags as releases.
     tags:
       - v*
-
-  # Run tests for any PRs.
   pull_request:
-
+  
 env:
-  # TODO: Change variable to your image's name.
   IMAGE_NAME: image
   NAMESPACE: test
-
+ 
 jobs:
-  # Push image to GitHub Packages.
-  # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  apply:
     runs-on: ubuntu-latest
     steps:
       - name: github action debug
         run: |
-          echo github.event_name=$github.event_name
-          echo github.repository=$github.repository
-          echo github.ref=$github.ref
-          echo github.sha=$github.sha
-          
-      - uses: actions/checkout@v2
+          echo github.event_name="${{ github.event_name }}"
+          echo github.repository="${{ github.repository }}"
+          echo github.ref="${{ github.ref }}"
+          echo github.sha="${{ github.sha }}"
+
+      - name: repo checkout
+        uses: actions/checkout@v2
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
