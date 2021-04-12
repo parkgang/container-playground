@@ -16,6 +16,10 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
+      - name: github action debug
+        run: |
+          ls -alF
+        
       - name: repo checkout
         uses: actions/checkout@v2
 
