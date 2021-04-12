@@ -1,0 +1,20 @@
+name: aks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: aks login
+        uses: azure/aks-set-context@v1
+        with:
+           creds: 'test'
+           resourceGroupName: 'myResourceGroup'
+           clusterName: 'myAKSCluster'
+        id: login
