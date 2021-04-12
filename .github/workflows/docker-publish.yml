@@ -70,7 +70,7 @@ jobs:
         id: login
 
       - name: Create namespace
-      - run: |
+        run: |
           kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
 
       - name: aks apply
