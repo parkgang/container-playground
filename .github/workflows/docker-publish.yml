@@ -16,6 +16,7 @@ on:
 env:
   # TODO: Change variable to your image's name.
   IMAGE_NAME: image
+  NAMESPACE: test
 
 jobs:
   # Push image to GitHub Packages.
@@ -54,12 +55,22 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+
       - name: aks login
         uses: azure/aks-set-context@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
-          resourceGroupName: 'myResourceGroup'
-          clusterName: 'myAKSCluster'
+           creds: '${{ secrets.AZURE_CREDENTIALS }}'
+           resource-group: 'myResourceGroup'
+           cluster-name: 'myAKSCluster'
         id: login
-    
-  
+
+      - name: Create namespace
+      - run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
+      - name: aks apply
+        uses: Azure/k8s-deploy@v1.4
+        with:
+          namespace: ${{ env.NAMESPACE }}
+          manifests: |
+            k8s.yaml
