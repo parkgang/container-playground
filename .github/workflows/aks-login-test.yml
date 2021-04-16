@@ -2,9 +2,9 @@ name: aks login
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - name: aks login
         uses: azure/aks-set-context@v1
         with:
-           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-           resource-group: 'myResourceGroup'
-           cluster-name: 'myAKSCluster'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          resource-group: 'myResourceGroup'
+          cluster-name: 'myAKSCluster'
         id: login
