@@ -59,6 +59,10 @@ jobs:
 
           # docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           # docker push $IMAGE_ID:$VERSION
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo TAG=${{ github.sha }}
+
           docker tag $IMAGE_NAME $IMAGE_ID:${{ github.sha }}
           docker push $IMAGE_ID:${{ github.sha }}
 
@@ -78,10 +82,10 @@ jobs:
         uses: Azure/k8s-deploy@v1.4
         with:
           namespace: ${{ env.NAMESPACE }}
-          images: |
-            $IMAGE_ID:${{ github.sha }}
           manifests: |
             k8s.yaml
+          images: |
+            $IMAGE_ID:${{ github.sha }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
