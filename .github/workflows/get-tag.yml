@@ -8,7 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Run a one-line script
-        run: echo "${{ github.event.release.tag_name }}"
+        run: |
+          echo github.event_name="${{ github.event_name }}"
+          echo github.repository="${{ github.repository }}"
+          echo github.ref="${{ github.ref }}"
+          echo github.sha="${{ github.sha }}"
+          echo github.event.ref="${{ github.event.ref }}"
+          echo github.event.release.tag_name="${{ github.event.release.tag_name }}"
