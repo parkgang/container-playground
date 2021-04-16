@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: node
-          image: ghcr.io/ruddms936/container-playground/image:latest
+          image: ghcr.io/parkgang/container-playground/image:latest
           env:
             - name: ENV_TEST
               value: 'k8s_run'

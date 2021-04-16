@@ -7,11 +7,11 @@ on:
     tags:
       - v*
   pull_request:
-  
+
 env:
   IMAGE_NAME: image
   NAMESPACE: test
- 
+
 jobs:
   apply:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
       - name: github action debug
         run: |
           ls -alF
-        
+
       - name: repo checkout
         uses: actions/checkout@v2
 
@@ -31,7 +31,7 @@ jobs:
           echo github.sha="${{ github.sha }}"
           pwd
           ls -alF
-          
+
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
@@ -63,9 +63,9 @@ jobs:
       - name: aks login
         uses: azure/aks-set-context@v1
         with:
-           creds: '${{ secrets.AZURE_CREDENTIALS }}'
-           resource-group: 'myResourceGroup'
-           cluster-name: 'myAKSCluster'
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          resource-group: 'myResourceGroup'
+          cluster-name: 'myAKSCluster'
         id: login
 
       - name: Create namespace
