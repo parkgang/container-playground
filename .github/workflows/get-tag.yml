@@ -3,18 +3,16 @@ name: get tag
 on:
   push:
     tags:
-      - v*
+      - 'v*.*.*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run a one-line script
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
         run: |
-          echo github.event_name="${{ github.event_name }}"
-          echo github.repository="${{ github.repository }}"
-          echo github.ref="${{ github.ref }}"
-          echo github.sha="${{ github.sha }}"
-          echo github.event.ref="${{ github.event.ref }}"
-          echo github.event.release.tag_name="${{ github.event.release.tag_name }}"
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
