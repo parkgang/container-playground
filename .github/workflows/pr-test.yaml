@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Run a multi-line script
         run: |
-          echo $ {{ github.actor}}
-          echo $ {{ github.event_name}}
-          echo $ {{ github.ref}}
-          echo $ {{ github.repository}}
-          echo $ {{ github.sha}}
+          echo ${{ github.actor}}
+          echo ${{ github.event_name}}
+          echo ${{ github.ref}}
+          echo ${{ github.repository}}
+          echo ${{ github.sha}}
