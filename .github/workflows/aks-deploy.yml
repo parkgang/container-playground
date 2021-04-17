@@ -11,7 +11,7 @@ on:
 env:
   IMAGE_NAME: image
   NAMESPACE: test
-  IMAGE_HOST: ghcr.io/${{ github.repository }}/$IMAGE_NAME
+  IMAGE_HOST: ghcr.io/${{ github.repository }}/${{ env.IMAGE_NAME }}
 
 jobs:
   apply:
