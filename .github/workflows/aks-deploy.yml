@@ -86,7 +86,7 @@ jobs:
           manifests: |
             k8s.yaml
           images: |
-            $IMAGE_ID:${{ github.sha }}
+            ${{ env.IMAGE_HOST }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
