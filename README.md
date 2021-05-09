@@ -1,4 +1,4 @@
-# container-playground  
+# container-playground
 
 CI/CD를 기반하여 생성된 container를 쉽게 테스트하기 위한 repo 입니다.
 
@@ -7,6 +7,8 @@ CI/CD를 기반하여 생성된 container를 쉽게 테스트하기 위한 repo 
 ```
 # Build
 docker build -t ghcr.io/parkgang/container-playground/image:latest .
+# Push
+docker push ghcr.io/parkgang/container-playground/image:latest
 # Run
 docker run --name node-test -d -p 5500:8080 ghcr.io/parkgang/container-playground/image:latest
 # Run (환경 변수 주입)
